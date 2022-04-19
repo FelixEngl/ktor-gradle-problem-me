@@ -194,7 +194,3 @@ A) The library is not correctly rersolved in IntelliJ/gradle and erroneously
 loaded as dependency.
 B) The jvmAndNixMain should not be loaded as library at all and the MPP-Plugin
 has some serious issues with either modules and (only) ktor.
-
-Right now we have a public holiday in germany, so I won't be able to respond do
-any of your questions until tuesday. (Sorry for that!)
-I'll try to come up with a minimal working example in the next week.
