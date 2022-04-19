@@ -5,7 +5,7 @@ This is a minimal example for a problem of ktor with gradle in a MPP project.
 
 ## TL:DR
 The JVM-ktor-dependencies do not only load the normal library versions like 
-`ktor-server-core:2.0.0` but also the `ktor-server-core: jvmAndNixMain:2.0.0.`
+`ktor-server-core:2.0.0` but also the `ktor-server-core: jvmAndNixMain:2.0.0`.
 Ktor is the only library causing this issue, so I think I either found a bug or I made a mistake in my gradle buildscript.
 
 
