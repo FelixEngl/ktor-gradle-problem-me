@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="Sub-jvm-1.0-SNAPSHOT">
+    <output-path>$PROJECT_DIR$/Sub/build/libs</output-path>
+    <root id="archive" name="Sub-jvm-1.0-SNAPSHOT.jar">
+      <element id="module-output" name="KtorLoadingProblem2.Sub.jvmMain" />
+    </root>
+  </artifact>
+</component>
