@@ -33,7 +33,7 @@ class Test {
                 )
             }
             application {
-                this@application.enviroment.monitor.subscribe(ServerInitializedEvent) {
+                this@application.environment.monitor.subscribe(ServerInitializedEvent) {
                     println("Initialized. Yay!")
                 }
                 server.apply { main() }

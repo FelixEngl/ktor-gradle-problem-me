@@ -1,8 +1,15 @@
+import org.jetbrains.kotlin.config.JvmTarget
+
 plugins {
     kotlin("multiplatform") version "1.6.20"
+    id("com.github.johnrengelman.shadow") version "7.1.2"
+    application
 //    kotlin("plugin.serialization") version "1.6.20"
 }
 
+application {
+    mainClass.set("io.ktor.server.netty.EngineMain")
+}
 
 kotlin {
     jvm {
@@ -10,7 +17,9 @@ kotlin {
         configure(listOf(compilations["main"], compilations["test"])) {
             kotlinOptions {
                 jvmTarget = "11"
+
             }
+            compileKotlinTask.targetCompatibility = "11"
         }
     }
 
@@ -113,4 +122,3 @@ kotlin {
 tasks.getByName<Test>("jvmTest") {
     useJUnitPlatform()
 }
-

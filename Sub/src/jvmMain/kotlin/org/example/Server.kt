@@ -29,10 +29,19 @@ class Server : AutoCloseable {
     }
 
     private fun initialize(cfg: ApplicationConfig){
+        println("cfg-Class: ${cfg::class.qualifiedName}")
         try {
             cfg.config("doesnotexist")
         } catch (e: ApplicationConfigurationException) {
             println("Does not exists works.")
+        } catch (e: com.typesafe.config.ConfigException.Missing){
+            println("This one was not specified!")
+            println("Name of Exception: ${e::class.qualifiedName}")
+            e.printStackTrace()
+        } catch (e: Exception){
+            println("Why does it not recognize the ApplicationConfigurationException?")
+            println("Name of Exception: ${e::class.qualifiedName}")
+            e.printStackTrace()
         }
     }
 
