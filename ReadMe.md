@@ -5,7 +5,7 @@ This is a minimal example for a problem of ktor with gradle in a MPP project.
 
 ## TL:DR
 The JVM-ktor-dependencies do not only load the normal library versions like 
-`ktor-server-core:2.0.0` but also the `ktor-server-core: jvmAndNixMain:2.0.0.`
+`ktor-server-core:2.0.0` but also the `ktor-server-core: jvmAndNixMain:2.0.0`.
 Ktor is the only library causing this issue, so I think I either found a bug or I made a mistake in my gradle buildscript.
 
 
@@ -50,7 +50,7 @@ As far as I can say, all these errors are somehow related to ktor and its
 nix-libraries. I'll go into further details with the following examples:
 
 
-===== Example 1 =====
+### Example 1      
 My Code:
 ````kotlin
 fun initializeServer(applicationConfig: ApplicationConfig){
@@ -70,7 +70,7 @@ fun initializeServer(applicationConfig: ApplicationConfig){
 }
 ````
 
-What IntelliJ does:
+What IntelliJ does:      
 IntelliJ underlines the `e: ApplicationConfigurationException` and shows the
 following errors and documentations:
 
@@ -92,7 +92,7 @@ The path to the source file, when I jump to the declaration of
 ApplicationConfigException via IntelliJ is `C:\Users\felix\.gradle\caches\modules-2\files-2.1\io.ktor\ktor-server-core\2.0.0\7064a323594c9b548ea52254325d1013f02da942\ktor-server-core-2.0.0-sources.jar!\jvmAndNixMain\io\ktor\server\config\ApplicationConfig.kt`.
 (This path does not exist in the filesystem.)
 
-===== Example 2 =====
+### Example 2        
 My Code:
 ````kotlin
 val testApplication = TestApplication {
@@ -143,7 +143,7 @@ testApplication
 ````
 The declarations in the IDE are also pointing to some invalid paths.
 
-===== Example 3 =====
+### Example 3        
 Regardless to the errors in "Example 2" I can compile and run the Unit-Tests.
 But then the code throws the following exception, when it reaches code from any
 ktor package with a jvmAndNixMain-twin it throws a massive amount of exceptions.
@@ -162,7 +162,7 @@ Caused by: io.ktor.server.engine.internal.ReloadingException: Module function ca
 	at app//kotlinx.coroutines.scheduling.CoroutineScheduler$Worker.run(CoroutineScheduler.kt:664)
 ````
 
-===== Example 4 =====
+### Example 4 
 When I check "Project -> External Libraries", the nixAndJvmMain-libs are loaded
 from a different path than the other, normal working libs:
 
@@ -185,16 +185,9 @@ Sources:
     C:\Users\felix\.gradle\caches\modules-2\files-2.1\io.ktor\ktor-server-core-jvm\2.0.0\7064a323594c9b548ea52254325d1013f02da942\ktor-server-core-2.0.0-sources.jar
 ````
 
-Like in "Example 1", the sources-path of the io.ktor:ktor-server-core:jvmAndNixMain:2.0.0
-doesn't exist.
+Like in "Example 1", the sources-path of the `io.ktor:ktor-server-core:jvmAndNixMain:2.0.0` doesn't exist.
 
 
 So my guesses right now are:
-A) The library is not correctly rersolved in IntelliJ/gradle and erroneously
-loaded as dependency.
-B) The jvmAndNixMain should not be loaded as library at all and the MPP-Plugin
-has some serious issues with either modules and (only) ktor.
-
-Right now we have a public holiday in germany, so I won't be able to respond do
-any of your questions until tuesday. (Sorry for that!)
-I'll try to come up with a minimal working example in the next week.
+1. The library is not correctly rersolved in IntelliJ/gradle and erroneously loaded as dependency.
+2. The jvmAndNixMain should not be loaded as library at all and the MPP-Plugin has some serious issues with either modules and (only) ktor.
