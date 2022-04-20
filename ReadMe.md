@@ -3,6 +3,10 @@
 This is a minimal example for a problem of ktor with gradle in a MPP project.
 
 
+## Update: 20.04.2022
+If you run gradle shadowJar and execute the resulting FatJar ./Sub/build/libs/Sub-1.0-SNAPSHOT-all.jar
+it throws a wrong exception. 
+
 ## TL:DR
 The JVM-ktor-dependencies do not only load the normal library versions like 
 `ktor-server-core:2.0.0` but also the `ktor-server-core: jvmAndNixMain:2.0.0`.

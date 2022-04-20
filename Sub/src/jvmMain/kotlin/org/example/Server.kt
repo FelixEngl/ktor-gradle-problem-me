@@ -35,7 +35,7 @@ class Server : AutoCloseable {
         } catch (e: ApplicationConfigurationException) {
             println("Does not exists works.")
         } catch (e: com.typesafe.config.ConfigException.Missing){
-            println("This one was not specified!")
+            println("This one was not specified by the documentation!")
             println("Name of Exception: ${e::class.qualifiedName}")
             e.printStackTrace()
         } catch (e: Exception){
